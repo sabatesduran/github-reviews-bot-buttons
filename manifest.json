@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub Reviews Bot",
+  "description": "Adds one-click buttons to GitHub PRs to trigger bot reviews (Cursor, Gemini, CodeRabbit)",
+  "version": "2.0.0",
+  "permissions": ["storage"],
+  "action": {
+    "default_icon": {
+      "16": "icons/cursor-bot-16.png",
+      "48": "icons/cursor-bot-48.png",
+      "128": "icons/cursor-bot-128.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icons/cursor-bot-16.png",
+    "48": "icons/cursor-bot-48.png",
+    "128": "icons/cursor-bot-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*/pull/*"],
+      "js": ["bots.js", "content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/cursor-icon.png",
+        "icons/gemini-icon.png",
+        "icons/coderabbitai-icon.png"
+      ],
+      "matches": ["https://github.com/*"]
+    }
+  ]
+}

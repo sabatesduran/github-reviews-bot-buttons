@@ -1,0 +1,49 @@
+.grb-review-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  line-height: 20px;
+  color: #c9d1d9;
+  background-color: #21262d;
+  border: 1px solid #363b42;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  vertical-align: middle;
+  transition: background-color 0.15s ease;
+  margin-right: 8px;
+}
+
+.grb-review-btn:hover {
+  background-color: #30363d;
+  border-color: #8b949e;
+}
+
+.grb-review-btn:active {
+  background-color: #282e33;
+}
+
+.grb-review-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.grb-review-btn img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.grb-review-btn.success {
+  background-color: #238636;
+  border-color: rgba(35, 134, 54, 0.4);
+}
+
+.grb-review-btn.error {
+  background-color: #da3633;
+  border-color: rgba(248, 81, 73, 0.4);
+}
