@@ -9,8 +9,8 @@ A Chrome extension that adds **one-click review buttons** to GitHub pull request
 | Bot | Command | Status |
 |-----|---------|--------|
 | [Cursor](https://cursor.sh) | `@cursor review` | Ready |
-| [Gemini](https://github.com/apps/gemini-code-assist) | `/gemini review` | Ready (needs icon) |
-| [CodeRabbit](https://coderabbit.ai) | `@coderabbitai review` | Ready (needs icon) |
+| [Gemini](https://github.com/apps/gemini-code-assist) | `/gemini review` | Ready |
+| [CodeRabbit](https://coderabbit.ai) | `@coderabbitai review` | Ready |
 
 Each bot can be individually enabled or disabled from the extension popup.
 
@@ -18,7 +18,7 @@ Each bot can be individually enabled or disabled from the extension popup.
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/didacs/cursor-github-review-buttom.git
+   git clone https://github.com/sabatesduran/github-reviews-bot-buttons.git
    ```
 2. Open **chrome://extensions** in Chrome
 3. Enable **Developer mode** (toggle in the top right)
