@@ -41,6 +41,14 @@ Click the extension icon in the toolbar to enable or disable each review bot. Di
 
 ![Extension popup with bot toggles](toggle-screenshots.png)
 
+## Privacy Policy
+
+Privacy policy URL for Chrome Web Store submission:
+
+`https://sabatesduran.github.io/github-reviews-bot-buttons/privacy.html`
+
+Source file in this repository: `privacy.html`
+
 ## Contributing
 
 Contributions are welcome! Here are some ways you can help:
