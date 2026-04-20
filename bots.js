@@ -20,4 +20,18 @@ const BOT_CONFIGS = [
     icon: 'icons/coderabbitai-icon.png',
     dataId: 'grb-btn-coderabbit',
   },
+  {
+    id: 'claude',
+    name: 'Claude',
+    command: '@claude review',
+    icon: 'icons/claude-icon.png',
+    dataId: 'grb-btn-claude',
+  },
+  {
+    id: 'copilot',
+    name: 'Copilot',
+    command: '@copilot review',
+    icon: 'icons/copilot-icon.png',
+    dataId: 'grb-btn-copilot',
+  },
 ];

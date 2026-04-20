@@ -7,9 +7,9 @@
   font-weight: 500;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
   line-height: 20px;
-  color: #c9d1d9;
-  background-color: #21262d;
-  border: 1px solid #363b42;
+  color: var(--fgColor-default, #c9d1d9);
+  background-color: var(--button-default-bgColor-rest, #21262d);
+  border: 1px solid var(--button-default-borderColor-rest, #363b42);
   border-radius: 6px;
   cursor: pointer;
   white-space: nowrap;
@@ -19,12 +19,12 @@
 }
 
 .grb-review-btn:hover {
-  background-color: #30363d;
-  border-color: #8b949e;
+  background-color: var(--button-default-bgColor-hover, #30363d);
+  border-color: var(--button-default-borderColor-hover, #8b949e);
 }
 
 .grb-review-btn:active {
-  background-color: #282e33;
+  background-color: var(--button-default-bgColor-active, #282e33);
 }
 
 .grb-review-btn:disabled {
@@ -39,11 +39,13 @@
 }
 
 .grb-review-btn.success {
-  background-color: #238636;
-  border-color: rgba(35, 134, 54, 0.4);
+  color: var(--button-primary-fgColor-rest, #ffffff);
+  background-color: var(--button-primary-bgColor-rest, #238636);
+  border-color: var(--button-primary-borderColor-rest, rgba(35, 134, 54, 0.4));
 }
 
 .grb-review-btn.error {
-  background-color: #da3633;
-  border-color: rgba(248, 81, 73, 0.4);
+  color: var(--button-danger-fgColor-rest, #ffffff);
+  background-color: var(--button-danger-bgColor-rest, #da3633);
+  border-color: var(--button-danger-borderColor-rest, rgba(248, 81, 73, 0.4));
 }

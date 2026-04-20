@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "GitHub Reviews Bot",
-  "description": "Adds one-click buttons to GitHub PRs to trigger bot reviews (Cursor, Gemini, CodeRabbit)",
-  "version": "2.0.0",
+  "description": "Adds one-click buttons to GitHub PRs to trigger bot reviews (Cursor, Gemini, CodeRabbit, Claude, Copilot)",
+  "version": "2.1.0",
   "permissions": ["storage"],
   "action": {
     "default_icon": {
@@ -30,7 +30,9 @@
       "resources": [
         "icons/cursor-icon.png",
         "icons/gemini-icon.png",
-        "icons/coderabbitai-icon.png"
+        "icons/coderabbitai-icon.png",
+        "icons/claude-icon.png",
+        "icons/copilot-icon.png"
       ],
       "matches": ["https://github.com/*"]
     }

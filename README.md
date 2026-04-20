@@ -11,6 +11,8 @@ A Chrome extension that adds **one-click review buttons** to GitHub pull request
 | [Cursor](https://cursor.sh) | `@cursor review` | Ready |
 | [Gemini](https://github.com/apps/gemini-code-assist) | `/gemini review` | Ready |
 | [CodeRabbit](https://coderabbit.ai) | `@coderabbitai review` | Ready |
+| [Claude](https://www.anthropic.com/claude) | `@claude review` | Ready |
+| [GitHub Copilot](https://github.com/features/copilot) | `@copilot review` | Best effort |
 
 Each bot can be individually enabled or disabled from the extension popup.
 
