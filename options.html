@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GitHub Reviews Bot — Settings</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --bg-elevated: #161b22;
+      --bg-input: #0d1117;
+      --border: #30363d;
+      --border-muted: #21262d;
+      --fg: #e6edf3;
+      --fg-muted: #8b949e;
+      --fg-subtle: #6e7681;
+      --accent: #2f81f7;
+      --green: #238636;
+      --green-border: rgba(35,134,54,0.4);
+      --danger: #f85149;
+      --danger-border: #da3633;
+      --radius: 8px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: var(--fg);
+      background: var(--bg);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #161b22 0%, #0d1117 100%);
+    }
+    .header-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 24px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .header img.logo {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    .header p {
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin-top: 2px;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+    .card-full { grid-column: 1 / -1; }
+
+    .card-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .card h2 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .card .card-sub {
+      font-size: 12px;
+      color: var(--fg-subtle);
+      margin-bottom: 16px;
+    }
+
+    /* Bot list rows */
+    .bot-toggle, .custom-bot-row {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+    }
+    .bot-toggle + .bot-toggle, .custom-bot-row + .custom-bot-row {
+      margin-top: 2px;
+    }
+    .bot-toggle:hover, .custom-bot-row:hover {
+      background: rgba(177,186,196,0.06);
+    }
+    .bot-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .bot-icon-copilot { filter: brightness(0) invert(1); }
+    .bot-name {
+      flex: 1;
+      font-size: 14px;
+      color: var(--fg);
+    }
+    .bot-cmd {
+      font-size: 12px;
+      color: var(--fg-subtle);
+      margin-left: 8px;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    }
+
+    /* Switch */
+    .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; inset: 0;
+      background-color: var(--border);
+      border-radius: 22px; transition: 0.2s;
+    }
+    .slider:before {
+      position: absolute; content: ""; height: 16px; width: 16px;
+      left: 3px; bottom: 3px; background-color: var(--fg-muted);
+      border-radius: 50%; transition: 0.2s;
+    }
+    .switch input:checked + .slider { background-color: var(--green); }
+    .switch input:checked + .slider:before {
+      transform: translateX(16px); background-color: #fff;
+    }
+
+    /* Select */
+    .default-select {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-input);
+      color: var(--fg);
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .default-select:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Inputs */
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-input);
+      color: var(--fg);
+      font-size: 14px;
+      font-family: inherit;
+    }
+    input[type="text"]:focus, textarea:focus, .default-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(47,129,247,0.25);
+    }
+    textarea { resize: vertical; min-height: 60px; }
+
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--fg-muted);
+      margin-bottom: 6px;
+    }
+
+    /* Icon gallery */
+    .icon-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .icon-gallery button {
+      width: 34px; height: 34px; padding: 4px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-input);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .icon-gallery button img { width: 100%; height: 100%; }
+    .icon-gallery button:hover { border-color: var(--fg-muted); }
+    .icon-gallery button.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(47,129,247,0.4);
+    }
+
+    /* Buttons */
+    .btn-row { display: flex; gap: 10px; margin-top: 4px; }
+    .btn {
+      flex: 1;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #21262d;
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: #30363d; }
+    .btn-primary {
+      background: var(--green);
+      border-color: var(--green-border);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #2ea043; }
+
+    .icon-btn {
+      width: 26px; height: 26px; padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      background: transparent;
+      color: var(--fg-muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      transition: all 0.15s ease;
+    }
+    .icon-btn:hover { color: var(--fg); border-color: var(--fg-muted); }
+    .icon-btn.danger:hover { color: var(--danger); border-color: var(--danger-border); }
+
+    .custom-bot-actions {
+      display: flex; gap: 6px; margin-left: 8px;
+    }
+
+    .hint { font-size: 12px; color: var(--fg-subtle); margin-top: 6px; }
+    .form-msg {
+      font-size: 13px; color: var(--danger);
+      margin-top: 8px; min-height: 16px;
+    }
+
+    .empty {
+      font-size: 13px; color: var(--fg-subtle);
+      padding: 12px; text-align: center;
+      border: 1px dashed var(--border-muted);
+      border-radius: 6px;
+    }
+
+    .footer {
+      max-width: 920px; margin: 0 auto;
+      padding: 0 24px 32px;
+      font-size: 12px; color: var(--fg-subtle);
+      text-align: center;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <img class="logo" src="icons/cursor-bot-128.png" alt="GitHub Reviews Bot">
+      <div>
+        <h1>GitHub Reviews Bot</h1>
+        <p>One-click review buttons for AI bots on GitHub pull requests.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+
+      <section class="card">
+        <div class="card-head"><h2>Review Bots</h2></div>
+        <p class="card-sub">Enable the bots you want to appear as buttons on PR pages.</p>
+        <div id="bot-list"></div>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><h2>Default Bot</h2></div>
+        <p class="card-sub">The bot shown as the main button on PR pages.</p>
+        <select id="default-bot-select" class="default-select"></select>
+      </section>
+
+      <section class="card card-full">
+        <div class="card-head"><h2>Custom Bots</h2></div>
+        <p class="card-sub">Add your own reviewer. The comment text is typed and submitted on the PR.</p>
+        <div id="custom-bot-list" class="custom-bot-list"></div>
+
+        <div style="margin-top: 20px;">
+          <div class="field">
+            <label for="cb-name">Name</label>
+            <input type="text" id="cb-name" placeholder="e.g. My Reviewer" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="cb-command">Comment text</label>
+            <textarea id="cb-command" placeholder="e.g. @my-bot review"></textarea>
+          </div>
+          <div class="field">
+            <label>Icon</label>
+            <div id="cb-icon-gallery" class="icon-gallery"></div>
+            <textarea id="cb-icon-svg" placeholder="…or paste your own SVG markup"></textarea>
+            <div class="hint">Pick a preset or paste any SVG. Brand marks may have trademark restrictions.</div>
+          </div>
+          <div class="form-msg" id="cb-msg"></div>
+          <div class="btn-row">
+            <button type="button" id="cb-submit" class="btn btn-primary">Add</button>
+            <button type="button" id="cb-cancel" class="btn" style="display:none;">Cancel</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    Preset icons: <a href="https://lucide.dev" target="_blank" rel="noopener">Lucide</a> (ISC) &amp;
+    <a href="https://simpleicons.org" target="_blank" rel="noopener">Simple Icons</a> (CC0).
+  </footer>
+
+  <script src="bots.js"></script>
+  <script src="preset-icons.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

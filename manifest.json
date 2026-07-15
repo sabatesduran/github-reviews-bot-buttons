@@ -1,16 +1,22 @@
 {
   "manifest_version": 3,
   "name": "GitHub Reviews Bot",
-  "description": "Adds one-click buttons to GitHub PRs to trigger bot reviews (Cursor, Gemini, CodeRabbit, Claude, Copilot)",
-  "version": "2.1.0",
+  "description": "Adds one-click buttons to GitHub PRs to trigger bot reviews (Cursor, Gemini, CodeRabbit, Claude, Copilot) and supports custom review bots.",
+  "version": "2.2.0",
   "permissions": ["storage"],
   "action": {
     "default_icon": {
       "16": "icons/cursor-bot-16.png",
       "48": "icons/cursor-bot-48.png",
       "128": "icons/cursor-bot-128.png"
-    },
-    "default_popup": "popup.html"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
   },
   "icons": {
     "16": "icons/cursor-bot-16.png",

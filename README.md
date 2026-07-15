@@ -14,7 +14,27 @@ A Chrome extension that adds **one-click review buttons** to GitHub pull request
 | [Claude](https://www.anthropic.com/claude) | `@claude review` | Ready |
 | [GitHub Copilot](https://github.com/features/copilot) | `@copilot review` | Best effort |
 
-Each bot can be individually enabled or disabled from the extension popup.
+Each bot can be individually enabled or disabled from the extension's settings page.
+
+## Custom Bots
+
+You can add your own review bots from the extension's settings page under **Custom Bots**:
+
+1. Enter a **Name** (e.g. `My Reviewer`)
+2. Enter the **Comment text** that should be typed and submitted (e.g. `@my-bot review`)
+3. Pick an **icon** — either choose a preset from the gallery, or paste your own SVG markup into the textarea
+4. Click **Add**
+
+Custom bots behave like built-in ones: enable/disable them with the toggle, pick one as the **Default Bot**, and a review button for it will appear on PR pages. Use **✎** to edit and **×** to delete a custom bot.
+
+### Preset icons
+
+Preset icons come from:
+
+- [Lucide](https://lucide.dev) — generic line icons (ISC license)
+- [Simple Icons](https://simpleicons.org) — brand/logo SVGs (CC0)
+
+Brand marks may be subject to **trademark** restrictions even when the SVG artwork itself is freely licensed — check the brand's guidelines before using a logo in something you distribute. Pasting your own SVG (including company brand SVGs you have the right to use) always keeps its original colors.
 
 ## Installation
 
@@ -31,7 +51,7 @@ The extension icon will appear in your Chrome toolbar.
 
 ## Usage
 
-1. Click the extension icon and **enable the bots** you want to use
+1. Click the extension icon in the toolbar to open the settings page, then **enable the bots** you want to use
 2. Navigate to any **open** or **draft** pull request on GitHub
 3. Scroll to the bottom where the comment box is
 4. Click the review button for the bot you want (e.g. **Cursor Review**, **Gemini Review**)
@@ -39,9 +59,7 @@ The extension icon will appear in your Chrome toolbar.
 
 ## Settings
 
-Click the extension icon in the toolbar to enable or disable each review bot. Disabled bots won't show a button on PR pages.
-
-![Extension popup with bot toggles](toggle-screenshots.png)
+Click the extension icon in the toolbar to open the settings page in a new tab. There you can enable or disable each review bot, pick a default bot, and add your own custom bots. Disabled bots won't show a button on PR pages.
 
 ## Privacy Policy
 
@@ -80,4 +98,4 @@ To add support for a new bot:
    ```
 3. In `manifest.json`, add the icon path to `web_accessible_resources`
 
-That's it — the popup toggles and PR page buttons are auto-generated from `bots.js`.
+That's it — the settings page toggles and PR page buttons are auto-generated from `bots.js`.

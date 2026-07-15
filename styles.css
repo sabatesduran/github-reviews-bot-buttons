@@ -18,6 +18,92 @@
   margin-right: 8px;
 }
 
+.grb-review-group {
+  position: relative;
+  display: inline-flex;
+  margin-right: 8px;
+}
+
+.grb-review-group .grb-review-btn {
+  margin-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.grb-menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  padding: 0;
+  border: 1px solid var(--button-default-borderColor-rest, #363b42);
+  border-left: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: var(--button-default-bgColor-rest, #21262d);
+  color: var(--fgColor-default, #c9d1d9);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.grb-menu-toggle:hover {
+  background-color: var(--button-default-bgColor-hover, #30363d);
+}
+
+.grb-menu-toggle:active {
+  background-color: var(--button-default-bgColor-active, #282e33);
+}
+
+.grb-review-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  display: none;
+  flex-direction: column;
+  min-width: 180px;
+  padding: 6px;
+  background: var(--overlay-bgColor, var(--bgColor-default, #0d1117));
+  border: 1px solid var(--borderColor-default, #30363d);
+  border-radius: 8px;
+  box-shadow: var(--shadow-floating-small, 0 8px 24px rgba(0, 0, 0, 0.25));
+  z-index: 50;
+}
+
+.grb-review-menu.open {
+  display: flex;
+}
+
+.grb-review-menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fgColor-default, #c9d1d9);
+  text-align: left;
+  cursor: pointer;
+}
+
+.grb-review-menu-item:hover {
+  background: var(--control-transparent-bgColor-hover, rgba(177, 186, 196, 0.12));
+}
+
+.grb-review-menu-item img {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+html[data-color-mode='dark'] .grb-icon-copilot {
+  filter: brightness(0) invert(1);
+}
+
+html[data-color-mode='light'] .grb-icon-coderabbit {
+  filter: brightness(0);
+}
+
 .grb-review-btn:hover {
   background-color: var(--button-default-bgColor-hover, #30363d);
   border-color: var(--button-default-borderColor-hover, #8b949e);
@@ -28,6 +114,11 @@
 }
 
 .grb-review-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.grb-menu-toggle:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
